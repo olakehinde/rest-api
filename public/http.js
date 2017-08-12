@@ -4,11 +4,23 @@ var feed = document.getElementById('feed');
 
 feed.addEventListener('submit', function(e) {
 	e.preventDefault();
-	// alert("hurray");
-	xhr.open('GET', 'http://localhost:3001/api/rss');
 
+	xhr.open('GET', "http://bellanaija.com/feed");
+
+	xhr.onreadystatechange = function() {
+	ResponseHandler(xhr);
+	}
+	xhr.send(null); //sends a null value
+
+function ResponseHandler(ajax) {
+	if(ajax.readyState == 4) {
+		if(ajax.status == 200 || ajax.status == 304) {
+			var res = JSON.parse(ajax.response);
+			console.log(res);
+		}
+	}
+}
 	
-	xhr.send();
 }, false);
 
 // click event listener for the form

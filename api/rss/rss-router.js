@@ -1,6 +1,11 @@
 var express = require('express'),
+	// FeedParser = require('feedparser'),
+	request = require('request'), //for fetching the rss feeds
 	router 	= express.Router(),
 	rssModel = require('./rss-model.js');
+
+	// var link = request('https://bellanaija.com');
+	// var feedparser = new FeedParser();
 
 	//create a route for param middleware
 	router.param('id', function(req, res, next, id) {
@@ -22,11 +27,15 @@ var express = require('express'),
 			res.status(200).send(data);
 		});
 	})
-	.get(function(req, res, next) {
-		rssModel.find(function(err, data) {
-			if(err) {return next(new Error('Cannot find feeds'));}
-			res.status(200).send(data);
-		})
-	})
+	// .get(function(req, res, next) {
+	// 	rssModel.find(function(err, data) {
+	// 		if(err) {return next(new Error('Cannot find feeds'));}
+	// 		res.status(200).send(data);
+	// 	})
+	// })
+
+	.get(link) {
+
+	}
 
 	module.exports = router;
